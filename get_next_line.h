@@ -6,14 +6,16 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:22:27 by mabril            #+#    #+#             */
-/*   Updated: 2024/03/29 17:14:39 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/01 20:12:27 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H 
 
-# define BUFFER_SIZE 3
+#ifndef BUFFER_SIZE
+# define BUFFER_SIZE 2
+#endif
 
 #include	<stdlib.h>
 #include	<string.h>

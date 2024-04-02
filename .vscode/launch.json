@@ -5,24 +5,12 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "(lldb) Lancer",
-			"type": "cppdbg",
+			"type": "lldb",
 			"request": "launch",
-			"program": "entrer le nom du programme, par exemple ${workspaceFolder}/a.out",
+			"name": "Debug",
+			"program": "${workspaceFolder}/a.out",
 			"args": [],
-			"stopAtEntry": false,
-			"cwd": "${fileDirname}",
-			"environment": [],
-			"externalConsole": false,
-			"MIMode": "lldb"
-		},
-		{
-			"name": "(lldb) Joindre",
-			"type": "cppdbg",
-			"request": "attach",
-			"program": "entrer le nom du programme, par exemple ${workspaceFolder}/a.out",
-			"MIMode": "lldb"
+			"cwd": "${workspaceFolder}"
 		}
-
 	]
 }
