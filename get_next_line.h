@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:22:27 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/02 19:12:37 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:29:36 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H 
 
 
-# define BUFFER_SIZE 4
+# define BUFFER_SIZE 3
 
 
 #include	<stdlib.h>

@@ -6,25 +6,28 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:49:56 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/04 11:42:44 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/04 12:54:51 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchr_pos(const char *s, int c)
 {
+	int i;
 	int t;
 
+	t = '\0';
 	while (*s)
 	{
 		if (*s == (char)c)
-			return ((char *)s);
+			return (i);
 		s++;
+		i++;
 	}
-	if (*s == (char) t)
-		return ((char *)s);
-	return (NULL);
+	if (*s == (char)t)
+		return (i);
+	return (0);
 }
 int ft_strchr_n(const char *s, int c)
 {
@@ -60,6 +63,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_str[i + j] = s2[j];
 		j++;
 	}
+	free(s1);
 	new_str[i + j] = '\0';
 	return (new_str);
 }
@@ -140,45 +144,36 @@ char	*ft_strncpy(char *dst, const char *src, size_t dstsize)
 
 char *gnl(int fd)
 {
-	int i;
 	int c;
-	char *buf;
-	// char buf[BUFFER_SIZE];
-	char *line;
+	int pos;
+	char buf[BUFFER_SIZE];
 	static char *stash;
-	int posicion_n;
+	char *line;
 	
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	c = read(fd, buf, BUFFER_SIZE);
 	stash = ft_strdup(buf);			
-	i = 0;
-	while (c != 0)
-	{		
-		// if(!bef)
-		// 	buf = malloc(sizeof(char) * BUFFER_SIZE+1);
-		// if ((read(fd, buf, BUFFER_SIZE)) == 0)
-		printf("buf_____   %s\n", buf);
-		c = read(fd, buf, BUFFER_SIZE);
+	while (c > 0)
+	{				
+		if ((pos =ft_strchr_pos(stash,'\n')) != 0)
+		{
+			line = malloc(sizeof(char*) * pos);
+			line = ft_strncpy(line, stash, pos);
+			return(line);
+		}
+		else
+		{
+			c = read(fd, buf, BUFFER_SIZE);
+			stash = ft_strjoin(stash, buf);
+		}
+		// printf("buf_____   %s\n", buf);
 		
 		if (c == 0)
 			break;
-		// c = read(fd, buf, BUFFER_SIZE);
-		stash = ft_strjoin_fin(stash, buf, c);
-		free(buf);
-		char *salto_line = ft_strchr(stash,'\n');
-		// if (salto_line != NULL)
-		// posicion_n = ft_strchr_n(stash, '\n');
-		// if (posicion_n >=  0)
-		// {
-		// 	line = malloc(sizeof(char*) * posicion_n + 1);
-		// 	ft_strncpy(line, stash, posicion_n);
-		// 	return(line);
-		// }
-		// if (ft_strdup(ft_strchr(stash, '\n')))
-	}
-		// printf("STASH  %s\n", stash);
 		
-    return (stash);
+		// stash = ft_strjoin_fin(stash, buf, c);
+		// line = ft_strchr(stash,'\n');
+	}
+    return (line);
 }
 
 int main()
@@ -191,8 +186,8 @@ int main()
         perror("Error al abrir el archivo");
         return 1;
     }
-    printf("\n\n\n\n%s\n", gnl(fd));
-	// printf("%s", gnl(fd));
+    printf("\n\n\n\n%s", gnl(fd));
+	printf("%s", gnl(fd));
 	// printf("%s", gnl(fd));
 	// printf("%s", gnl(fd));
 	// printf("%s", gnl(fd));
@@ -201,3 +196,13 @@ int main()
     close(fd);
 	return (0);
 }
+		// if (salto_line != NULL)
+		// posicion_n = ft_strchr_n(stash, '\n');
+		// if (posicion_n >=  0)
+		// {
+		// 	line = malloc(sizeof(char*) * posicion_n + 1);
+		// 	ft_strncpy(line, stash, posicion_n);
+		// 	return(line);
+		// }
+		// if (ft_strdup(ft_strchr(stash, '\n')))
+	// } printf("STASH  %s\n", stash);
