@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:49:56 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/09 19:17:10 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/10 12:10:20 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ char *ft_read_line(int fd)
 
 	flag_read = 0;
 	flag_read = read(fd, buff, BUFFER_SIZE);
-	while( flag_read > 0)
-	{
-		buff[]
-			
+	while(flag_read > 0)
+	{	
+		buff[BUFFER_SIZE] = '\0';
+		lin_n = ft_strdup(buff);
+		lin_n = ft_strjoin(lin_n, buff);   
 	}
-	
-	
-	lin_n = malloc (sizeof(char) * )
+	if (flag_read = -1)
+		retur (NULL);
 	retur (lin_n);
 }
 int	ft_strchr_pos(const char *s, int c)
@@ -78,7 +78,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_str[i + j] = s2[j];
 		j++;
 	}
-	// free(s1);
 	new_str[i + j] = '\0';
 	return (new_str);
 }
