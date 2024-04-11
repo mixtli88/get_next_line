@@ -6,57 +6,14 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:49:56 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/10 12:10:20 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/11 09:49:03 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-char *ft_read_line(int fd)
-{
-	char *lin_n;
-	char buff[BUFFER_SIZE + 1];
-	int flag_read;
 
-	flag_read = 0;
-	flag_read = read(fd, buff, BUFFER_SIZE);
-	while(flag_read > 0)
-	{	
-		buff[BUFFER_SIZE] = '\0';
-		lin_n = ft_strdup(buff);
-		lin_n = ft_strjoin(lin_n, buff);   
-	}
-	if (flag_read = -1)
-		retur (NULL);
-	retur (lin_n);
-}
-int	ft_strchr_pos(const char *s, int c)
-{
-	int i;
-	
-	i = 0;
-	while (*s)
-	{
-		if (*s == (char)c)
-			return (i);
-		s++;
-		i++;
-	}
-	
-	return (0);
-}
-int ft_strchr_n(const char *s, int c)
-{
-	int i;
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
-}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new_str;
@@ -105,55 +62,6 @@ char	*ft_strjoin_fin(char const *s1, char const *s2, size_t n)
 	}
 	new_str[i + j] = '\0';
 	return (new_str);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	int		len;
-	char	*copie;
-	int		i;
-
-	len = 0;
-	i = 1;
-	while (s1[len])
-		len++;
-	copie = malloc(sizeof(char) * (len + 1));
-	if (!copie)
-		return (0);
-	while (s1[i - 1])
-	{
-		copie[i - 1] = s1[i - 1];
-		i ++;
-	}
-	copie[i - 1] = '\0';
-	return (copie);
-}
-
-size_t	ft_strlen(const char	*s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
-
-char	*ft_strncpy(char *dst, const char *src, size_t dstsize)
-{
-	size_t	i;
-
-	i = 0;
-	while (src[i] != '\0' && i < dstsize)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	if (dstsize)
-		dst[i] = '\0';
-	return (dst);
 }
 
 char *gnl(int fd)

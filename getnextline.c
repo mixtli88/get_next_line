@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:49:56 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/10 18:48:37 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/11 11:15:11 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,19 +38,34 @@ char *ft_read_line(int fd)
 char *gnl(int fd)
 {
 	char *tem;
+	char *line;
 	static char *stock;
+	
 	stock  = ft_read_line(fd);
-	// tem =
-	return (stock);
+	line = ft_strdup_n(stock);
+	stock = ft_strchr(stock, '\n');
+	printf("%s", stock);
+	
+	
+	
+	return (line);
 }
 
 int main()
 {
-	char *str;
+	
 
 	int fd = open("file.txt", O_RDWR);
+	char *str;
+		if (str)
+		{
+			str = gnl(fd);
+			printf("%s", str);
+			free(str);
+		}
+		printf("hola");
 	str = gnl(fd);
-	printf("\n\n\n\n%s", str);
+			printf("%s", str);
     close(fd);
 	return (0);
 }

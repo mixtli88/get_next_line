@@ -2,14 +2,20 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s)
+	int i;
+	char *t;
+
+	i  = 0;
+	t = (char *)s;
+	while (*t)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (*t == (char)c)
+			return (t + i);
+		t++;
+		i++;
 	}
-	if (*s == (char)c)
-		return ((char *)s);
+	if (*t == (char)c)
+		return (t);
 	return (NULL);
 }
 
@@ -20,18 +26,18 @@ char	*ft_strdup(const char *s1)
 	int		i;
 
 	len = 0;
-	i = 1;
+	i = 0;
 	while (s1[len])
 		len++;
 	copie = malloc(sizeof(char) * (len + 1));
 	if (!copie)
 		return (0);
-	while (s1[i - 1])
+	while (s1[i])
 	{
-		copie[i - 1] = s1[i - 1];
+		copie[i] = s1[i];
 		i ++;
 	}
-	copie[i - 1] = '\0';
+	copie[i] = '\0';
 	return (copie);
 }
 
@@ -72,30 +78,30 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (cp);
 }
 
-// char	*ft_strjoin(char const *s1, char const *s2)
-// {
-// 	char	*new_str;
-// 	int		i;
-// 	int		j;
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
+	int		i;
+	int		j;
 
-// 	new_str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
-// 	if (!new_str)
-// 		return (0);
-// 	i = 0;
-// 	while (s1[i])
-// 	{
-// 		new_str[i] = s1[i];
-// 		i++;
-// 	}
-// 	j = 0;
-// 	while (s2[j])
-// 	{
-// 		new_str[i + j] = s2[j];
-// 		j++;
-// 	}
-// 	new_str[i + j] = '\0';
-// 	return (new_str);
-// }
+	new_str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (!new_str)
+		return (0);
+	i = 0;
+	while (s1[i])
+	{
+		new_str[i] = s1[i];
+		i++;
+	}
+	j = 0;
+	while (s2[j])
+	{
+		new_str[i + j] = s2[j];
+		j++;
+	}
+	new_str[i + j] = '\0';
+	return (new_str);
+}
 size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
     size_t  len;
@@ -142,14 +148,40 @@ size_t  ft_strlcat(char *dst, const char *src, size_t dstsize)
         return (dstsize + src_len);
     return (src_len + dst_len);
 }
-char    *ft_strjoin(char *s1, char *s2)
+int	ft_strchr_pos(const char *s, int c)
 {
-    char    *copie;
-    copie = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-    if (!copie)
-        return (0);
-    ft_strlcpy(copie, s1, (ft_strlen(s1) + ft_strlen(s2)) + 1);
-    ft_strlcat(copie, s2, (ft_strlen(s1) + ft_strlen(s2)) + 1);
-    // free(s1);
-    return (copie);
+	int i;
+	
+	i = 0;
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (i);
+		s++;
+		i++;
+	}
+	
+	return (0);
+}
+
+char	*ft_strdup_n(const char *s1)
+{
+	int		len;
+	char	*copie;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (s1[len] != '\n' && s1[len + 1] != '\0')
+		len++;
+	copie = malloc(sizeof(char) * (len + 1));
+	if (!copie)
+		return (0);
+	while (i <= len)
+	{
+		copie[i] = s1[i];
+		i ++;
+	}
+	copie[i] = '\0';
+	return (copie);
 }
