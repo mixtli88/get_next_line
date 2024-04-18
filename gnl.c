@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 16:49:56 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/11 09:49:03 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:27:26 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	new_str[i + j] = '\0';
+	// free(s1);
 	return (new_str);
 }
 

@@ -102,26 +102,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	new_str[i + j] = '\0';
 	return (new_str);
 }
-size_t  ft_strlcpy(char *dst, const char *src, size_t dstsize)
-{
-    size_t  len;
-    size_t  i;
-    len = 0;
-    len = ft_strlen(src);
-    if (!src)
-        return (0);
-    i = 0;
-    while (*src != '\0' && (i + 1 < dstsize))
-    {
-        *dst++ = *src++;
-        i++;
-    }
-    if (dstsize > 0)
-    {
-        *dst = '\0';
-    }
-    return (len);
-}
+// char  *ft_strcpy(char *dst, const char *src)
+// {
+//     size_t  len;
+    
+//     len = 0;
+//     len = ft_strlen(src);
+//     if (!src)
+//         return (0);
+//     while (*src != '\0')
+//         *dst++ = *src++;
+//     *dst = '\0';
+//     return (dst);
+// }
 size_t  ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
     size_t  src_len;
