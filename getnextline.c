@@ -139,30 +139,29 @@
 
 #include "get_next_line.h"
 
-char *ft_read_line(int fd, char *lin_n)
+char *ft_read_line(int fd)
 {
 	
 	char buff[BUFFER_SIZE + 1];
 	int flag;
+	char *lin_n;
 		
-	flag = read(fd, buff, BUFFER_SIZE);
-	while (flag > 0)
+	while (2)
 	{	
+		flag = read(fd, buff, BUFFER_SIZE);
 		buff[flag] = '\0';
 		if (flag == 0)
 			return (lin_n);
+	
 		if (!lin_n)
 			lin_n = ft_strdup(buff);
 		else
 			lin_n = ft_strjoin(lin_n, buff);
-		// printf("%s\n", buff);
+		
 		if (ft_strchr(lin_n, '\n'))
 			return (lin_n);
-		flag = read(fd, buff, BUFFER_SIZE);
 	}
-	if (flag == -1)
-		return (NULL);
-	return (lin_n);
+	
 }
 
 char *gnl(int fd)
@@ -171,22 +170,24 @@ char *gnl(int fd)
 	char *line;
 	static char *stock;
 	
-	stock  = ft_read_line(fd, stock);
-	if (!(ft_strchr(stock, '\n')))
-		return(line = stock, stock = NULL, line);
-	// printf("%s\n", stock);
-	line = ft_strdup_n(stock);
-	stock = ft_strchr(stock, '\n');
-	// printf("*%s\n", stock);
+	stock  = ft_read_line(fd);
+	// if (!(ft_strchr(stock, '\n')))
+	// 	return(line = stock, stock = NULL, line);
 	
+	tem = ft_strdup(stock);
+	line= ft_strdup_n(stock);
+
+	free (stock);
+
+	if (ft_strchr(tem, '\n'))
+		stock = ft_strdup_apr_n(tem);
 	
-	
+
+	free (tem);
 	return (line);
 }
 int main()
 {
-	
-
 	int fd = open("file.txt", O_RDWR);
 	char *str;
 		if (str)
@@ -199,6 +200,9 @@ int main()
 	str = gnl(fd);
 	printf("%s", str);
 	free(str);
+	// str = gnl(fd);
+	// printf("%s", str);
+	// free(str);
 	// while ((str = gnl(fd)) != NULL)
 	// {
 	// 	printf("%s", str);

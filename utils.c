@@ -14,8 +14,7 @@ char	*ft_strchr(const char *s, int c)
 		t++;
 		i++;
 	}
-	if (*t == (char)c)
-		return (t);
+	
 	return (NULL);
 }
 
@@ -174,6 +173,32 @@ char	*ft_strdup_n(const char *s1)
 	{
 		copie[i] = s1[i];
 		i ++;
+	}
+	copie[i] = '\0';
+	return (copie);
+}
+
+char	*ft_strdup_apr_n(const char *s1)
+{
+	int		len;
+	char	*copie;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (s1[len + 1] != '\0')
+		len++;
+	while (s1[i] != '\n')
+		i++;
+	copie = malloc(sizeof(char) * ((len - i) + 1));
+	if (!copie)
+		return (0);
+	len = 0;
+	while (s1[i + 1])
+	{
+		copie[len] = s1[i + 1];
+		len++;
+		i++;
 	}
 	copie[i] = '\0';
 	return (copie);

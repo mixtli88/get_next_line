@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:22:27 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/18 11:37:48 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/19 11:02:27 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 
 size_t  ft_strlcat(char *dst, const char *src, size_t dstsize);
-char  ft_strcpy(char *dst, const char *src);
+// char  ft_strcpy(char *dst, const char *src);
 int	ft_strchr_pos(const char *s, int c);
 char	*ft_strdup_n(const char *s1);
+char	*ft_strdup_apr_n(const char *s1);
 
 #endif
 #endif
