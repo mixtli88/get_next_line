@@ -159,9 +159,11 @@ char *ft_read_line(int fd)
 			lin_n = ft_strjoin(lin_n, buff);
 		
 		if (ft_strchr(lin_n, '\n'))
+		{
+
 			return (lin_n);
+		}
 	}
-	
 }
 
 char *gnl(int fd)
@@ -171,19 +173,14 @@ char *gnl(int fd)
 	static char *stock;
 	
 	stock  = ft_read_line(fd);
-	// if (!(ft_strchr(stock, '\n')))
-	// 	return(line = stock, stock = NULL, line);
-	
 	tem = ft_strdup(stock);
-	line= ft_strdup_n(stock);
-
-	free (stock);
-
+	line = ft_strdup_n(stock);
+	if (stock)
+		free(stock);
 	if (ft_strchr(tem, '\n'))
 		stock = ft_strdup_apr_n(tem);
-	
-
-	free (tem);
+	if (tem)
+		free(tem);
 	return (line);
 }
 int main()
@@ -199,7 +196,8 @@ int main()
 		
 	str = gnl(fd);
 	printf("%s", str);
-	free(str);
+	// if (str)
+	// 	free(str);
 	// str = gnl(fd);
 	// printf("%s", str);
 	// free(str);

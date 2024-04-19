@@ -77,7 +77,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (cp);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*new_str;
 	int		i;
@@ -98,6 +98,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		new_str[i + j] = s2[j];
 		j++;
 	}
+	if (s1)
+		free(s1); //double free lors du 2ieme appel de gnl
 	new_str[i + j] = '\0';
 	return (new_str);
 }
