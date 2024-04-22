@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:14:43 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/20 18:47:58 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/22 13:44:44 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int i;
-	char *t;
+	int		i;
+	char	*t;
 
-	i  = 0;
+	i = 0;
 	t = (char *)s;
 	while (*t)
 	{
@@ -45,13 +45,13 @@ char	*ft_strdup(const char *s1)
 	while (s1[i])
 	{
 		copie[i] = s1[i];
-		i ++;
+		i++;
 	}
 	copie[i] = '\0';
 	return (copie);
 }
 
-int	ft_strlen(const char	*s)
+int	ft_strlen(const char *s)
 {
 	int	i;
 
@@ -90,20 +90,6 @@ char	*ft_strjoin(char *s1, char *s2)
 	new_str[i + j] = '\0';
 	return (new_str);
 }
-// char  *ft_strcpy(char *dst, const char *src)
-// {
-//     size_t  len;
-    
-//     len = 0;
-//     len = ft_strlen(src);
-//     if (!src)
-//         return (0);
-//     while (*src != '\0')
-//         *dst++ = *src++;
-//     *dst = '\0';
-//     return (dst);
-// }
-
 
 char	*ft_strdup_n(const char *s1)
 {
@@ -121,7 +107,7 @@ char	*ft_strdup_n(const char *s1)
 	while (i <= len)
 	{
 		copie[i] = s1[i];
-		i ++;
+		i++;
 	}
 	copie[i] = '\0';
 	return (copie);
@@ -143,12 +129,14 @@ char	*ft_strdup_apr_n(const char *s1)
 	if (!copie)
 		return (0);
 	len = 0;
-	while (s1[i+1] != '\0')
+	while (s1[i + 1] != '\0')
 	{
 		copie[len] = s1[i + 1];
 		len++;
 		i++;
 	}
 	copie[len] = '\0';
+	// if (*copie == '\0')
+	// 	return (NULL);
 	return (copie);
 }
