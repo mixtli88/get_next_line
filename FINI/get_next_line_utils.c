@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:14:43 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/22 13:44:44 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/22 17:55:39 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char	*ft_strdup_n(const char *s1)
 	return (copie);
 }
 
-char	*ft_strdup_apr_n(const char *s1)
+char	*ft_strdup_apr_n(char *s1)
 {
 	int		len;
 	char	*copie;
@@ -135,6 +135,7 @@ char	*ft_strdup_apr_n(const char *s1)
 		len++;
 		i++;
 	}
+	free(s1);
 	copie[len] = '\0';
 	// if (*copie == '\0')
 	// 	return (NULL);
