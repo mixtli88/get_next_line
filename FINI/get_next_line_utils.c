@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:14:43 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/22 17:55:39 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/24 11:20:20 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ char	*ft_strdup_n(const char *s1)
 
 	len = 0;
 	i = 0;
-	while (s1[len] != '\n' && s1[len + 1] != '\0')
+	while (s1[len] != '\n' && s1[len] != '\0')
 		len++;
 	copie = malloc(sizeof(char) * (len + 1));
 	if (!copie)
@@ -125,6 +125,11 @@ char	*ft_strdup_apr_n(char *s1)
 		len++;
 	while (s1[i] != '\n')
 		i++;
+if (len == i)
+	{
+		free(s1);
+		return (NULL);
+	}
 	copie = malloc(sizeof(char) * ((len - i) + 1));
 	if (!copie)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:20:37 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/22 20:24:04 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/24 11:22:39 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 char	*ft_read_line(int fd, char *lin)
 {
+	
 	char	buff[BUFFER_SIZE + 1];
 	char	*tempo;
 	int		flag;
@@ -23,7 +24,7 @@ char	*ft_read_line(int fd, char *lin)
 	while (2)
 	{
 		flag = read(fd, buff, BUFFER_SIZE);
-		buff[flag] = '\0';
+		buff[flag] = '\0';		
 		if (flag == 0)
 		{
 			if (lin)
@@ -55,10 +56,13 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*stock;
 
+	if (fd < 0 || read(fd, 0, 0) < 0)
+		return (NULL);
 	stock = ft_read_line(fd, stock);
 	if (stock == NULL || *stock == '\0')
 		return (NULL);
 	line = ft_strdup_n(stock);
+	
 	if (ft_strchr(stock, '\n'))
 		stock = ft_strdup_apr_n(stock);
 	else
@@ -71,17 +75,19 @@ char	*get_next_line(int fd)
 
 // int	main(void)
 // {
-// 	int fd = open("file.txt", O_RDWR);
+// 	int fd =  open("file.txt", O_RDWR);
 // 	char *str;
 	
 // 	str = get_next_line(fd);
 // 		printf("%s", str);
+// 		// // printf("%p\n", str);
 // 		if (str)
 // 			free(str);
-// 	while (str)
+// 	while (str != NULL)
 // 	{
 // 		str = get_next_line(fd);
 // 		printf("%s", str);
+// 		// // printf("%p\n", str);
 // 		if (str)
 // 			free(str);
 // 	}
