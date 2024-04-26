@@ -6,61 +6,54 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:14:43 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/24 11:20:20 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/25 21:26:05 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strchr(const char *s, int c)
+int	ft_strchrcheck(char *s, int c)
 {
-	int		i;
-	char	*t;
-
-	i = 0;
-	t = (char *)s;
-	while (*t)
+	while (*s)
 	{
-		if (*t == (char)c)
-			return (++t);
-		t++;
-		i++;
+		if (*s == (char)c)
+			return (1);
+		s++;
+	}
+	return (0);
+}
+
+char	*ft_strchr(char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return (s);
+		s++;
 	}
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(char *s1)
 {
 	int		len;
 	char	*copie;
-	int		i;
 
 	len = 0;
-	i = 0;
-	while (s1[len])
+	while (s1[len] != '\0')
 		len++;
+	// printf ("OE : %i\n", len);
 	copie = malloc(sizeof(char) * (len + 1));
 	if (!copie)
 		return (0);
-	while (s1[i])
+	len = 0;
+	while (s1[len])
 	{
-		copie[i] = s1[i];
-		i++;
+		copie[len] = s1[len];
+		len++;
 	}
-	copie[i] = '\0';
+	copie[len] = '\0';
 	return (copie);
-}
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
@@ -69,29 +62,28 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		i;
 	int		j;
 
-	new_str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	i = 0;
+	j = 0;
+	while (s1[i] != '\0')
+		i++;
+	while (s2[j] != '\0')
+		j++;
+	new_str = malloc(sizeof(char) * ((i + j + 2)));
 	if (!new_str)
 		return (0);
-	i = 0;
-	while (s1[i])
-	{
+	i = -1;
+	while (s1[++i])
 		new_str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
+	j = -1;
+	while (s2[++j])
 		new_str[i + j] = s2[j];
-		j++;
-	}
 	if (s1)
 		free(s1);
-	s1 = NULL;
 	new_str[i + j] = '\0';
 	return (new_str);
 }
 
-char	*ft_strdup_n(const char *s1)
+char	*ft_strdup_n(char *s1)
 {
 	int		len;
 	char	*copie;
@@ -101,7 +93,7 @@ char	*ft_strdup_n(const char *s1)
 	i = 0;
 	while (s1[len] != '\n' && s1[len] != '\0')
 		len++;
-	copie = malloc(sizeof(char) * (len + 1));
+	copie = malloc(sizeof(char) * (len + 2));
 	if (!copie)
 		return (0);
 	while (i <= len)
@@ -112,7 +104,7 @@ char	*ft_strdup_n(const char *s1)
 	copie[i] = '\0';
 	return (copie);
 }
-
+// *str ['\0']
 char	*ft_strdup_apr_n(char *s1)
 {
 	int		len;
@@ -125,11 +117,8 @@ char	*ft_strdup_apr_n(char *s1)
 		len++;
 	while (s1[i] != '\n')
 		i++;
-if (len == i)
-	{
-		free(s1);
-		return (NULL);
-	}
+	if (len == i)
+		return (free(s1), NULL);
 	copie = malloc(sizeof(char) * ((len - i) + 1));
 	if (!copie)
 		return (0);
@@ -140,9 +129,7 @@ if (len == i)
 		len++;
 		i++;
 	}
-	free(s1);
 	copie[len] = '\0';
-	// if (*copie == '\0')
-	// 	return (NULL);
+	free(s1);
 	return (copie);
 }
