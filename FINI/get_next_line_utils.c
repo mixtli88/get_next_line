@@ -6,22 +6,11 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:14:43 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/25 21:26:05 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/29 09:57:52 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-int	ft_strchrcheck(char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char)c)
-			return (1);
-		s++;
-	}
-	return (0);
-}
 
 char	*ft_strchr(char *s, int c)
 {
@@ -42,7 +31,6 @@ char	*ft_strdup(char *s1)
 	len = 0;
 	while (s1[len] != '\0')
 		len++;
-	// printf ("OE : %i\n", len);
 	copie = malloc(sizeof(char) * (len + 1));
 	if (!copie)
 		return (0);
@@ -104,7 +92,7 @@ char	*ft_strdup_n(char *s1)
 	copie[i] = '\0';
 	return (copie);
 }
-// *str ['\0']
+
 char	*ft_strdup_apr_n(char *s1)
 {
 	int		len;

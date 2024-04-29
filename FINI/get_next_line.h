@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 12:22:27 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/25 22:48:03 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/29 09:50:46 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 8
 # endif
 
 # include <fcntl.h>

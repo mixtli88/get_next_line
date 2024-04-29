@@ -6,7 +6,7 @@
 /*   By: mabril <mabril@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 18:20:37 by mabril            #+#    #+#             */
-/*   Updated: 2024/04/25 22:48:57 by mabril           ###   ########.fr       */
+/*   Updated: 2024/04/29 09:56:41 by mabril           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,9 @@
 char	*ft_read_line(int fd, char *stic)
 {
 	char	buff[BUFFER_SIZE + 1];
-	// char	*temp;
-	size_t		n_read;
+	size_t	n_read;
 
 	n_read = 0;
-	// temp = stic;
 	while (2)
 	{
 		n_read = read(fd, buff, BUFFER_SIZE);
@@ -45,12 +43,6 @@ char	*get_next_line(int fd)
 	stock = ft_read_line(fd, stock);
 	if (!stock)
 		return (NULL);
-	if (!(ft_strchrcheck(stock, '\n')))
-		{
-			// free(nl);
-			// nl = NULL;
-			return (nl = stock,stock = NULL, nl);
-		}
 	nl = ft_strdup_n(stock);
 	if (ft_strchr(stock, '\n'))
 		stock = ft_strdup_apr_n(stock);
@@ -62,25 +54,17 @@ char	*get_next_line(int fd)
 	return (nl);
 }
 
-int	main(void)
-{
-	int fd =  open("file.txt", O_RDWR);
-	char *str;
-	str = get_next_line(fd);
-	printf("%s", str);
-	free(str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
-	// str = get_next_line(fd);
-	// printf("%s", str);
-	// while (str != NULL)
-	// {
-	// 	str = get_next_line(fd);
-	// 	printf("%s", str);
-	// 	// // printf("%p\n", str);
-	// 	if (str)
-	// 		free(str);
-	// }
-	close(fd);
-	return (0);
-}
+// int	main(void)
+// {
+// 	int fd =  open("file.txt", O_RDWR);
+// 	char *str;
+// 	while (str)
+// 	{
+// 		str = get_next_line(fd);
+// 		printf("%s", str);
+// 		if (str)
+// 			free(str);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
